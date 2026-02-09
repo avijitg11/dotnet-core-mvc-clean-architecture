@@ -44,9 +44,8 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 var app = builder.Build();
-StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
-
-SyncfusionLicenseProvider.RegisterLicense(builder.Configuration.GetSection("Syncfusion:Licensekey").Get<string>());
+StripeConfiguration.ApiKey = builder.Configuration["StripeSecretKey"];
+SyncfusionLicenseProvider.RegisterLicense(builder.Configuration["SyncfusionLicensekey"]);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
